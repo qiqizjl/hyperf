@@ -39,6 +39,11 @@ abstract class ConsumerMessage extends Message implements ConsumerMessageInterfa
      */
     protected $routingKey = [];
 
+    /**
+     * @var int
+     */
+    protected $prefetchCount = 0;
+
     public function setQueue(string $queue): self
     {
         $this->queue = $queue;
@@ -71,5 +76,21 @@ abstract class ConsumerMessage extends Message implements ConsumerMessageInterfa
     public function getConsumerTag(): string
     {
         return implode(',', (array) $this->getRoutingKey());
+    }
+
+    /**
+     * @return int
+     */
+    public function getPrefetchCount(): int
+    {
+        return $this->prefetchCount;
+    }
+
+    /**
+     * @param int $prefetchCount
+     */
+    public function setPrefetchCount(int $prefetchCount): void
+    {
+        $this->prefetchCount = $prefetchCount;
     }
 }

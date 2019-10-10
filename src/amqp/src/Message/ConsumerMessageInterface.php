@@ -27,4 +27,8 @@ interface ConsumerMessageInterface extends MessageInterface
     public function getQueueBuilder(): QueueBuilder;
 
     public function getConsumerTag(): string;
+
+    public function setPrefetchCount(int $prefetchCount);
+
+    public function getPrefetchCount(): int;
 }

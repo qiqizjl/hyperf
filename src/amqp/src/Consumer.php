@@ -52,7 +52,7 @@ class Consumer extends Builder
         $channel = $connection->getConfirmChannel();
 
         $this->declare($consumerMessage, $channel);
-
+        $channel->basic_qos(null, $consumerMessage->getPrefetchCount(), false);
         $channel->basic_consume(
             $consumerMessage->getQueue(),
             $consumerMessage->getConsumerTag(),
